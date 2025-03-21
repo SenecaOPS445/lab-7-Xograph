@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Student ID: [seneca_id]
+# Student ID: kho55
 class Time:
     """Simple object type for time of the day.
     data attributes: hour, minute, second
@@ -38,3 +38,21 @@ def valid_time(t):
     if t.minute >= 60 or t.second >= 60 or t.hour >= 24:
         return False
     return True
+
+def change_time(time, seconds):
+    total_seconds = time_to_sec(time) + seconds
+    newtime = sec_to_time(total_seconds)
+    time.hour, time.minute, time.second = newtime.hour, newtime.minute, newtime.second
+    return None
+
+def time_to_sec(time):
+    minutes = time.hour * 60 + time.minute
+    seconds = minutes * 60 + time.second
+    return seconds
+
+def sec_to_time(seconds):
+    hour = seconds // 3600
+    remaining = seconds % 3600
+    minute = remaining // 60
+    second = remaining % 60
+    return Time(hour, minute, second)
